@@ -1,7 +1,7 @@
+import 'package:codelandia_wolt_clone/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/carousel_slider_widget.dart';
-import '../widgets/discount_widget.dart';
 import '../widgets/food_categories.dart';
 
 class DiscoveryScreen extends StatefulWidget {
@@ -38,15 +38,37 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         controller: _scrollController,
-        child: const Column(
-          children: [
-            FoodCategories(),
-            SizedBox(height: 10),
-            CarouselSliderWidget(),
-            SizedBox(height: 10),
-            DiscountWidget(),
-            DiscountWidget(),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Column(
+            children: [
+              FoodCategories(),
+              SizedBox(height: 10),
+              CarouselSliderWidget(),
+              SizedBox(height: 10),
+              SizedBox(
+                height: 210,
+                child: ListView(
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  children: List.filled(
+                    10,
+                    const CardWidget(
+                      imageUrl:
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMjjoCccOuhKmneVWt2ETy60PdDd7iu1HhcQ&usqp=CAU',
+                      price: 1.7,
+                      textFirst: 'Sushi Khan',
+                      textSecond: 'Sushi, premium rolls!',
+                      point: 9.0,
+                      time: '15-20',
+                    ),
+                  ),
+                ),
+              ),
+              Placeholder(),
+              Placeholder(),
+            ],
+          ),
         ),
       ),
     );
