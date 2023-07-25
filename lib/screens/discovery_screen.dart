@@ -1,8 +1,11 @@
 import 'package:codelandia_wolt_clone/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../methods/methods.dart';
 import '../widgets/carousel_slider_widget.dart';
 import '../widgets/food_categories.dart';
+import '../widgets/restaurants_widget.dart';
+import '../widgets/wolt_ad.dart';
 
 class DiscoveryScreen extends StatefulWidget {
   const DiscoveryScreen({super.key});
@@ -42,31 +45,65 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Column(
             children: [
-              FoodCategories(),
-              SizedBox(height: 10),
-              CarouselSliderWidget(),
-              SizedBox(height: 10),
-              SizedBox(
-                height: 210,
-                child: ListView(
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  children: List.filled(
-                    10,
-                    const CardWidget(
-                      imageUrl:
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMjjoCccOuhKmneVWt2ETy60PdDd7iu1HhcQ&usqp=CAU',
-                      price: 1.7,
-                      textFirst: 'Sushi Khan',
-                      textSecond: 'Sushi, premium rolls!',
-                      point: 9.0,
-                      time: '15-20',
+              const FoodCategories(),
+              const SizedBox(height: 10),
+              const CarouselSliderWidget(),
+              const SizedBox(height: 10),
+              Column(
+                children: [
+                  buildTextAndButton(text: '0 AZN delivery fee with Wolt+'),
+                  SizedBox(
+                    height: 210,
+                    child: ListView(
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      children: List.filled(
+                        10,
+                        const CardWidget(
+                          imageUrl:
+                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMjjoCccOuhKmneVWt2ETy60PdDd7iu1HhcQ&usqp=CAU',
+                          price: 1.7,
+                          textFirst: 'Sushi Khan',
+                          textSecond: 'Sushi, premium rolls!',
+                          point: 9.0,
+                          time: '15-20',
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-              Placeholder(),
-              Placeholder(),
+              const WoltAd(),
+              Column(
+                children: [
+                  buildTextAndButton(text: 'Fastest delivery'),
+                  SizedBox(
+                    height: 210,
+                    child: ListView(
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      children: List.filled(
+                        10,
+                        const CardWidget(
+                          imageUrl:
+                              'https://imageproxy.wolt.com/venue/64a7c9ffed3eb63eb5d4f3ca/be4d61c4-1c9e-11ee-95d3-326a4541e6ae_afa14c20_1335_11ee_b97a_1ec35802104d_fryday_1.png',
+                          price: 1.3,
+                          textFirst: 'Fryday Khalglar',
+                          textSecond: 'Live for Fryday Burger!',
+                          point: 9.1,
+                          time: '30-40',
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  buildTextAndButton(text: 'Popular brands'),
+                  const RestaurantsWidget(),
+                ],
+              ),
             ],
           ),
         ),
@@ -120,49 +157,6 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
               ),
             )
           : null,
-    );
-  }
-
-  Padding buildOutlinedButton({required String name}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 6),
-      child: OutlinedButton(
-        style: const ButtonStyle(
-          minimumSize: MaterialStatePropertyAll(
-            Size(0, 0),
-          ),
-        ),
-        onPressed: () {},
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 2),
-          child: Text(
-            name,
-            style: const TextStyle(color: Colors.grey, fontSize: 16),
-          ),
-        ),
-      ),
-    );
-  }
-
-  AppBar buildAppBarFirst() {
-    return AppBar(
-      surfaceTintColor: Colors.transparent,
-      shadowColor: Colors.transparent,
-      backgroundColor: const Color(0xFF1C1C1C),
-      elevation: 0,
-      leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.add_home_work_outlined,
-            color: Colors.blue,
-          )),
-      title: const Text(
-        'Ev, Qara Qarayev 59, mənzil 8',
-        style: TextStyle(
-          color: Colors.blue,
-          fontSize: 15,
-        ),
-      ),
     );
   }
 }
