@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../screens/food_screen.dart';
+
 Padding buildTextAndButton({required String text}) {
   return Padding(
     padding: const EdgeInsets.only(top: 12, bottom: 0),
@@ -17,8 +19,8 @@ Padding buildTextAndButton({required String text}) {
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            backgroundColor: const MaterialStatePropertyAll(
-              Colors.blueGrey,
+            backgroundColor: MaterialStatePropertyAll(
+              Colors.blueGrey[900],
             ),
           ),
           onPressed: () {},
@@ -38,21 +40,29 @@ Padding buildTextAndButton({required String text}) {
 Padding buildOutlinedButton({required String name}) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 6),
-    child: OutlinedButton(
-      style: const ButtonStyle(
-        minimumSize: MaterialStatePropertyAll(
-          Size(0, 0),
+    child: Builder(builder: (context) {
+      return OutlinedButton(
+        style: const ButtonStyle(
+          minimumSize: MaterialStatePropertyAll(
+            Size(0, 0),
+          ),
         ),
-      ),
-      onPressed: () {},
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 2),
-        child: Text(
-          name,
-          style: const TextStyle(color: Colors.grey, fontSize: 16),
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const FoodScreen(),
+              ));
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 2),
+          child: Text(
+            name,
+            style: const TextStyle(color: Colors.grey, fontSize: 16),
+          ),
         ),
-      ),
-    ),
+      );
+    }),
   );
 }
 

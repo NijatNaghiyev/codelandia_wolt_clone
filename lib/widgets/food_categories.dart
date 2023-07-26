@@ -1,3 +1,4 @@
+import 'package:codelandia_wolt_clone/screens/food_screen.dart';
 import 'package:flutter/material.dart';
 
 class FoodCategories extends StatelessWidget {
@@ -81,41 +82,52 @@ class FoodCategories extends StatelessWidget {
   }) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: 8),
-          Stack(
+      child: Builder(builder: (context) {
+        return InkWell(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FoodScreen(),
+                ));
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const CircleAvatar(
-                radius: 35,
-                backgroundColor: Colors.grey,
-              ),
-              Positioned(
-                bottom: 4,
-                left: 4,
-                right: 4,
-                top: 4,
-                child: CircleAvatar(
-                  foregroundImage: NetworkImage(
-                    imageUrl,
+              const SizedBox(height: 8),
+              Stack(
+                children: [
+                  const CircleAvatar(
+                    radius: 35,
+                    backgroundColor: Colors.grey,
                   ),
+                  Positioned(
+                    bottom: 4,
+                    left: 4,
+                    right: 4,
+                    top: 4,
+                    child: CircleAvatar(
+                      foregroundImage: NetworkImage(
+                        imageUrl,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                nameCategory,
+                textAlign: TextAlign.justify,
+                softWrap: true,
+                textHeightBehavior: const TextHeightBehavior(
+                  applyHeightToFirstAscent: true,
+                  applyHeightToLastDescent: false,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 8),
-          Text(
-            nameCategory,
-            textAlign: TextAlign.justify,
-            softWrap: true,
-            textHeightBehavior: const TextHeightBehavior(
-              applyHeightToFirstAscent: true,
-              applyHeightToLastDescent: false,
-            ),
-          ),
-        ],
-      ),
+        );
+      }),
     );
   }
 }
